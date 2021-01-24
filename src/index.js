@@ -14,18 +14,15 @@ app.get("/", (req, res) => {
 });
 
 // As we have to create Student Data so we will use POST.
-app.post("/students", (req, res) => {
-  console.log(req.body);
-  const user = new Student(req.body);
 
-  user
-    .save()
-    .then(() => {
-      res.status(201).send(user);
-    })
-    .catch((err) => {
-      res.status(400).send(err);
-    });
+app.post("/students", async (req, res) => {
+  try {
+    const user = new Student(req.body);
+    const createUser = await user.save();
+    res.status(201).send(createUser);
+  } catch (err) {
+    res.status(400).send(err);
+  }
 });
 
 //LISTENER
