@@ -33,6 +33,17 @@ app.get("/students", async (req, res) => {
 
 // get an indvidula student data
 
+app.patch("/students/:id", async (req, res) => {
+  try {
+    const _id = req.params.id; // through this we get the id from the url
+    const UpdateStudents = await Student.findByIdAndUpdate(_id, req.body, {
+      new: true,
+    }); // we get the data by findById method.
+    res.status(200).send(UpdateStudents);
+  } catch (e) {
+    res.status(404).send(e);
+  }
+});
 app.get("/students/:id", async (req, res) => {
   try {
     const _id = req.params.id; // through this we get the id from the url
