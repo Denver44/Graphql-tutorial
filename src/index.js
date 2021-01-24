@@ -9,9 +9,6 @@ const Student = require("./models/students");
 app.use(express.json());
 
 // API ROUTE
-app.get("/", (req, res) => {
-  res.send("Hoem Page For Rest-full API");
-});
 
 // As we have to create Student Data so we will use POST.
 
@@ -22,6 +19,31 @@ app.post("/students", async (req, res) => {
     res.status(201).send(createUser);
   } catch (err) {
     res.status(400).send(err);
+  }
+});
+
+app.get("/students", async (req, res) => {
+  try {
+    const StudentData = await Student.find();
+    res.status(200).send(StudentData);
+  } catch (e) {
+    res.status(400).send(e);
+  }
+});
+
+// get an indvidula student data
+
+app.get("/students/:id", async (req, res) => {
+  try {
+    const _id = req.params.id; // through this we get the id from the url
+    const studentData = await Student.findById(_id); // we get the data by findById method.
+    if (!studentData) {
+      return res.status(404).send();
+    } else {
+      res.status(200).send(studentData);
+    }
+  } catch (e) {
+    res.status(500).send(e);
   }
 });
 
