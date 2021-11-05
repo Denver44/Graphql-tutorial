@@ -9,7 +9,7 @@ mongoose
     useFindAndModify: false,
   })
   .then(() => {
-    console.log("db connection Successfull....");
+    console.log("db connection Successful....");
   })
   .catch((err) => {
     console.log(err);
