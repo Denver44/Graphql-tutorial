@@ -3,12 +3,24 @@ import _ from "lodash";
 import axios from "axios";
 const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLSchema } = graphql;
 
+const CompanyType = new GraphQLObjectType({
+  name: "Company",
+  fields: {
+    id: { type: GraphQLString },
+    name: { type: GraphQLString },
+    desc: { type: GraphQLString },
+  },
+});
+
 const UserType = new GraphQLObjectType({
   name: "User",
   fields: {
     id: { type: GraphQLString },
     firstName: { type: GraphQLString },
     age: { type: GraphQLInt },
+    company: {
+      type: CompanyType,
+    },
   },
 });
 
