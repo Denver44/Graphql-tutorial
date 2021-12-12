@@ -1,5 +1,5 @@
 import app from "../app.js";
-import route from "../routes/student.js";
+import route from "../routes/company.js";
 
 app.use("/api/", route);
 
