@@ -1,6 +1,6 @@
 import app from "./app.js";
 import mongoose from "mongoose";
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 5000;
 import routes from "./routes/router.js";
 
 app.use("/", routes);
