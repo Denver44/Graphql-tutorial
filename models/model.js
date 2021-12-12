@@ -4,7 +4,6 @@ const studentSchema = mongoose.Schema({
   firstName: String,
   id: String,
   age: Number,
-  schoolId: ObjectId,
 });
 
 const schoolSchema = mongoose.Schema({

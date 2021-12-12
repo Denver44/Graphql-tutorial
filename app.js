@@ -5,6 +5,7 @@ import morgan from "morgan";
 import bodyParser from "body-parser";
 import cors from "cors";
 import expressGraphQL from "express-graphql";
+import schema from "./schema/schema.js";
 const graphqlHTTP = expressGraphQL.graphqlHTTP;
 
 dotenv.config();
@@ -14,6 +15,7 @@ const app = express();
 app.use(
   "/graphql",
   graphqlHTTP({
+    schema,
     graphiql: true,
   })
 );
