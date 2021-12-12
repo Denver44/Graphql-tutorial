@@ -1,19 +1,19 @@
 import mongoose from "mongoose";
 
-const studentSchema = mongoose.Schema({
+const UserSchema = mongoose.Schema({
   firstName: String,
   id: String,
   age: Number,
 });
 
-const schoolSchema = mongoose.Schema({
+const CompanySchema = mongoose.Schema({
   id: String,
   name: String,
   desc: String,
-  employees: [studentSchema],
+  employees: [UserSchema],
 });
 
-const Student = mongoose.model("Student", studentSchema);
-const School = mongoose.model("School", schoolSchema);
+const Student = mongoose.model("Student", UserSchema);
+const Company = mongoose.model("School", CompanySchema);
 
-export { School, Student };
+export { Student, Company };

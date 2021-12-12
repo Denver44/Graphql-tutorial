@@ -6,7 +6,7 @@ import routes from "./routes/router.js";
 app.use("/", routes);
 
 mongoose
-  .connect("mongodb://localhost:27017/students-api", {
+  .connect("mongodb://localhost:27017/userData-api", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
