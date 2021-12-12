@@ -5,8 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "index.js",
     "dev": "nodemon index.js",
-    "start": "index.js"
+    "json:server": "json-server --watch db.json"
   },
   "keywords": [],
   "author": "denver",
