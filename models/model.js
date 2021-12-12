@@ -13,7 +13,7 @@ const CompanySchema = mongoose.Schema({
   employees: [UserSchema],
 });
 
-const Student = mongoose.model("Student", UserSchema);
-const Company = mongoose.model("School", CompanySchema);
+const User = mongoose.model("User", UserSchema);
+const Company = mongoose.model("Company", CompanySchema);
 
-export { Student, Company };
+export { User, Company };
