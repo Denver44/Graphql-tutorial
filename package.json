@@ -1,5 +1,5 @@
 {
-  "name": "restfulapi",
+  "name": "restful-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "start": "nodemon index.js"
   },
   "keywords": [],
-  "author": "durgesh rai",
+  "author": "denver",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
