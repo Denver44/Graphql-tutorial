@@ -1,18 +1,22 @@
-const express = require("express");
-const app = express();
-require("./src/db/conn"); // db connection file connected with our index file.
-const port = process.env.PORT || 8000; //  process.env.port will assign a port when we put it on herekou any other web server. // For localhost it will be 80.
-const cors = require("cors");
+import app from "./app.js";
+import mongoose from "mongoose";
+const PORT = process.env.PORT || 8000;
+import routes from "./routes/router.js";
 
-const Student = require("./src/models/students");
-const StudentRouter = require("./src/routers/student.js");
+app.use("/", routes);
 
-// MIDDLEWARE
-app.use(cors());
-app.use(express.json());
-app.use(StudentRouter);
-
-//LISTENER
-app.listen(port, () => {
-  console.log(`listening the port at  ${port}`);
-});
+mongoose
+  .connect("mongodb://localhost:27017/students-api", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`listening the port at  ${PORT}`);
+    });
+  })
+  .catch((e) => {
+    console.log("error ", e);
+  });
