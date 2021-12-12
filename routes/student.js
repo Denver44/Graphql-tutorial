@@ -9,10 +9,10 @@ import {
   deleteOneStudentData,
 } from "../controller/student.js";
 
-router.get("/students", getStudentData);
-router.get("/students/:id", getOneStudentData);
-router.post("/students", createStudentData);
-router.patch("/students/:id", updateOneStudentData);
-router.delete("/students/:id", deleteOneStudentData);
+router.get("/", getStudentData);
+router.get("/:id", getOneStudentData);
+router.post("/", createStudentData);
+router.patch("/:id", updateOneStudentData);
+router.delete("/:id", deleteOneStudentData);
 
 export default router;
