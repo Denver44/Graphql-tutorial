@@ -7,6 +7,7 @@ const {
   GraphQLInt,
   GraphQLSchema,
   GraphQLList,
+  GraphQLNonNull,
 } = graphql;
 
 // Here put the values as an arrow function it will solve our js problem that object not defined otherwise it will throw an error of UserType not defined.
@@ -72,5 +73,67 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
-const schema = new GraphQLSchema({ query: RootQuery });
+const mutation = new GraphQLObjectType({
+  name: "Mutations",
+  fields: {
+    addUser: {
+      type: UserType,
+      args: {
+        firstName: { type: new GraphQLNonNull(GraphQLString) },
+        age: { type: new GraphQLNonNull(GraphQLInt) },
+        companyId: { type: GraphQLString },
+      },
+      resolve(parentValue, args) {
+        return axios
+          .post(`http://localhost:3000/user/`, {
+            firstName: args.firstName,
+            age: args.age,
+          })
+          .then((res) => res.data);
+      },
+    },
+    deleteUser: {
+      type: UserType,
+      args: {
+        id: { type: GraphQLString },
+      },
+      resolve(parentValue, args) {
+        return axios
+          .delete(`http://localhost:3000/user/${args.id}`)
+          .then((res) => res.data);
+      },
+    },
+    editUser: {
+      type: UserType,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLString) },
+        firstName: { type: GraphQLString },
+        age: { type: GraphQLInt },
+        companyId: { type: GraphQLString },
+      },
+      resolve(parentValue, args) {
+        return axios
+          .patch(`http://localhost:3000/user/${args.id}`, args)
+          .then((res) => res.data);
+      },
+    },
+    addCompany: {
+      type: CompanyType,
+      args: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        desc: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      resolve(parentValue, args) {
+        return axios
+          .post(`http://localhost:3000/companies/`, {
+            name: args.name,
+            desc: args.desc,
+          })
+          .then((res) => res.data);
+      },
+    },
+  },
+});
+
+const schema = new GraphQLSchema({ query: RootQuery, mutation });
 export default schema;
