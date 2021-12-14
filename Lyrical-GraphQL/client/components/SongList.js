@@ -15,12 +15,15 @@ const SongList = (props) => {
   console.log("props ", props);
   return (
     <div>
-      SongList
-      <ul>
-        {props.data &&
-          props.data.songs &&
-          props.data.songs.map((song) => <li key={song.id}>{song.title}</li>)}
-      </ul>
+      {props.data.loading ? (
+        <h3>loading.....</h3>
+      ) : (
+        <ul>
+          {props.data.songs.map((song) => (
+            <li key={song.id}>{song.title}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
