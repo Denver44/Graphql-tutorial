@@ -24,5 +24,18 @@ const DeleteSongQuery = gql`
     }
   }
 `;
+const FetchSongByIDQuery = gql`
+  query FetchSong($id: ID!) {
+    song(id: $id) {
+      title
+      id
+    }
+  }
+`;
 
-export { fetchSongListQuery, CreateSongQuery, DeleteSongQuery };
+export {
+  fetchSongListQuery,
+  CreateSongQuery,
+  DeleteSongQuery,
+  FetchSongByIDQuery,
+};
