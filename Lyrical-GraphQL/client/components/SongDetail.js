@@ -4,30 +4,19 @@ import "../style/style.css";
 import { FetchSongByIDQuery } from "../queries/songQuery";
 
 class SongDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { title: "" };
-  }
 
-  handleFetch() {
-    this.props
-      .mutate({
-        variables: {
-          id: this.props.routeParams.id,
-        },
-      })
-      .then((data) => this.setState({ title: data.title }))
-      .catch((e) => console.log(e));
-  }
 
   render() {
-    console.log(this.props.routeParams.id);
+    console.log(this.props);
     return (
       <div>
-        <h3>{this.props.title === "" ? <h1>No Song</h1> : this.state.title}</h3>
+        <h3>{this.props.data.song === undefined ? <h1>No Song</h1> : this.props.data.song.title}</h3>
       </div>
     );
   }
 }
 
-export default graphql(FetchSongByIDQuery)(SongDetail);
+// This props is from react-router to graphQl then from graphql it comes to our component so this will work in modern react also.
+export default graphql(FetchSongByIDQuery, {
+  options: (props) => { return { variables: { id: props.params.id } } }
+})(SongDetail);
