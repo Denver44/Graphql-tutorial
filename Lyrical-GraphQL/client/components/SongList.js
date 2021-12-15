@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "react-apollo";
-import { fetchSongListQuery, DeleteSongQuery } from "../queries/songQuery";
+import { fetchSongListQuery } from "../queries/songQuery";
 import { Link } from "react-router";
 
 const SongList = (props) => {
@@ -22,5 +22,4 @@ const SongList = (props) => {
   );
 };
 
-// TODO Check this and find a new Solution
-export default graphql(DeleteSongQuery)(graphql(fetchSongListQuery)(SongList));
+export default graphql(fetchSongListQuery)(SongList);

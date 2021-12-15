@@ -17,12 +17,4 @@ const CreateSongQuery = gql`
   }
 `;
 
-const DeleteSongQuery = gql`
-  mutation DeleteSong($id: ID) {
-    deleteSong(id: $id) {
-      id
-    }
-  }
-`;
-
-export { fetchSongListQuery, CreateSongQuery, DeleteSongQuery };
+export { fetchSongListQuery, CreateSongQuery };
