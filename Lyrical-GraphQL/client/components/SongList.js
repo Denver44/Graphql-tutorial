@@ -1,18 +1,9 @@
-import React, { UseState, useEffect } from "react";
-import gql from "graphql-tag";
+import React from "react";
 import { graphql } from "react-apollo";
-
-const query = gql`
-  {
-    songs {
-      id
-      title
-    }
-  }
-`;
+import { fetchSongListQuery, DeleteSongQuery } from "../queries/songQuery";
+import { Link } from "react-router";
 
 const SongList = (props) => {
-  console.log("props ", props);
   return (
     <div>
       {props.data.loading ? (
@@ -24,8 +15,12 @@ const SongList = (props) => {
           ))}
         </ul>
       )}
+      <Link to="/song/new" className="btn-floating btn-large red right">
+        <i className="material-icons">+</i>
+      </Link>
     </div>
   );
 };
 
-export default graphql(query)(SongList);
+// TODO Check this and find a new Solution
+export default graphql(DeleteSongQuery)(graphql(fetchSongListQuery)(SongList));
