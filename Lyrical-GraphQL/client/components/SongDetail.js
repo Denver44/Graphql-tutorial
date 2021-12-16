@@ -2,15 +2,24 @@ import React, { Component } from "react";
 import { graphql } from "react-apollo";
 import "../style/style.css";
 import { FetchSongByIDQuery } from "../queries/songQuery";
+import { Link } from "react-router";
+import LyricCreate from "./LyricCreate";
+import LyricList from "./LyricList";
 
 class SongDetail extends Component {
-
-
   render() {
     console.log(this.props);
     return (
       <div>
-        <h3>{this.props.data.song === undefined ? <h1>No Song</h1> : this.props.data.song.title}</h3>
+        <Link to="/">Back</Link>
+        {this.props.data.loading ? <h1>Loading...</h1> :
+          (<div>
+            {this.props.data.song.title}
+            <LyricList lyricList={this.props.data.song.lyrics} />
+          </div>
+          )
+        }
+        <LyricCreate id={this.props.params.id} />
       </div>
     );
   }

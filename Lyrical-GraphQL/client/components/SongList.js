@@ -21,15 +21,17 @@ const SongList = (props) => {
       ) : (
         <ul>
           {props.data.songs.map((song) => (
-            <li className="collection-item" key={song.id}>
-              {song.title}
+            <div className="collection-item" >
+              <Link to={`/song/${song.id}`}>
+                <li key={song.id}> {song.title}</li>
+              </Link>
               <i
                 className="material-icons delete-icon"
                 onClick={() => OnSongDelete(song.id)}
               >
                 delete
               </i>
-            </li>
+            </div>
           ))}
         </ul>
       )}
